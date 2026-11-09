@@ -1,25 +1,24 @@
----
-
-### 2. `docs/README.md`
-
-```markdown
 # Documentação e Relatório Técnico (docs/)
 
-Neste diretório ficam armazenados o relatório final do projeto e os arquivos auxiliares de documentação.
+Relatório final do projeto e arquivos de apoio.
 
 ## Requisitos do Relatório
-* **Formato:** Artigo técnico-científico de 7 a 15 páginas.
+* **Formato:** artigo técnico-científico de 7 a 15 páginas.
 * **Modelo:** SBC (Sociedade Brasileira de Computação).
-* **Estrutura Obrigatória:**
-  1. Introdução e contextualização do repositório OpenClaude.
-  2. Fundamentação teórica dos conceitos de redes e dos dois algoritmos selecionados.
-  3. Arquitetura da biblioteca de grafos e decisões de projeto.
-  4. Metodologia de coleta (API GitHub), tratamento de dados e ponderação das arestas.
-  5. Resultados obtidos, discussões e visualizações gráficas geradas no Gephi.
-  6. Limitações, conclusões e referências.
-  7. Tabela de atribuição de responsabilidades individuais dos integrantes.
+* **Conteúdo mínimo:**
+  1. Introdução, contexto, objetivos e justificativa da escolha do repositório OpenClaude (incluindo o período analisado).
+  2. Fundamentação teórica sobre redes de colaboração e os dois algoritmos escolhidos.
+  3. Arquitetura da biblioteca de grafos, classes, representações e decisões técnicas.
+  4. Coleta e modelagem: dados, interações, direção das arestas e pesos.
+  5. Metodologia de construção dos grafos e implementação dos algoritmos.
+  6. Resultados e discussão, com visualizações e comparação das redes.
+  7. Limitações do trabalho.
+  8. Conclusão e trabalhos futuros.
+  9. Referências.
+  10. Contribuições individuais de cada integrante.
 
-##  Arquivos
-* `artigo.tex`: Arquivo-fonte principal em LaTeX.
-* `sbc.cls` / `sbc-template.bib`: Arquivos de estilo e bibliografia do modelo SBC.
-* `relatorio_final.pdf`: PDF final compilado para entrega.
+## Arquivos
+* `enunciado.pdf`: enunciado oficial do trabalho.
+* `artigo.tex`: fonte principal em LaTeX.
+* `sbc-template.sty` / `sbc.bst` / `referencias.bib`: estilo e bibliografia do modelo SBC (a adicionar).
+* `relatorio_final.pdf`: PDF compilado para entrega (a adicionar).
