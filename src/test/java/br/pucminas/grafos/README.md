@@ -18,3 +18,8 @@ Suíte de testes unitários desenvolvida em JUnit para validação de integridad
 
 3. **Coleta e Parsing (`controller/`):**
    - Testes unitários com arquivos JSON mockados para validar a correta extração das interações do OpenClaude.
+   - Os JSONs de exemplo ficam em `src/test/resources/github/`.
+
+4. **Modelagem (`model/github/`):**
+   - Pesos de cada `InteractionType`, filtro de bots, contas excluídas e auto-interações.
+   - Agregação de interações repetidas no mesmo par ordenado sem contagem dupla.
