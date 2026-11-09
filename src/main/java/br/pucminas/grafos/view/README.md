@@ -1,13 +1,14 @@
 # Camada de Visualização (view/)
 
-Responsável pela interação direta com o usuário e pela geração das saídas de arquivos de visualização externa.
+Interação com o usuário no terminal.
 
 ## Componentes
 
 * `ConsoleView.java`:
-  * Interface em linha de comando (CLI) que disponibiliza menus interativos no terminal.
-  * Exibe resumos quantitativos (contagem de vértices e arestas, graus de entrada/saída, densidade).
-  * Apresenta os rankings e métricas retornados pelos algoritmos de análise.
-* `GephiExporterView.java`:
-  * Lida com a formatação e serialização das instâncias de `AbstractGraph` para arquivos compatíveis com o Gephi (GEXF, GraphML ou CSV).
-  * Grava os arquivos finais no diretório `data/gephi/`.
+  * Menus da CLI da Etapa 2.
+  * Mostra resumos dos grafos (vértices, arestas, graus de entrada/saída).
+  * Mostra os rankings e métricas devolvidos pelos algoritmos.
+
+## Exportação para o Gephi
+
+A exportação **não** fica nesta camada. O enunciado exige `exportToGEPHI(String path)` como parte da API da biblioteca, então ela está implementada em `model/graph/AbstractGraph`. A view (ou o controller) só escolhe o caminho em `data/gephi/` e chama `grafo.exportToGEPHI(caminho)`.
