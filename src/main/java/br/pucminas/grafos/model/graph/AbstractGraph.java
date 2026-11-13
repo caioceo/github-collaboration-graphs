@@ -18,35 +18,33 @@ public abstract class AbstractGraph {
     }
 
 
-    int getVertexCount(){return numVertex;};
-    int getEdgeCount(){return edgeCount;};
-    int getVertexInDegree(int u){return 1;};
-    int getVertexOutDegree(int u){return 1;};    
+    public int getVertexCount(){return numVertex;};
+    public int getEdgeCount(){return edgeCount;};
+    public int getVertexInDegree(int u){return 0;};
+    public int getVertexOutDegree(int u){return 0;};    
+    public double getVertexWeight(int v){return listVertexWeight[v];};
+    public double getEdgeWeight(int u, int v){return 1;};
+
+    public void setEdgeWeight(int u, int v, double w){}
+
+    public void setVertexWeight(int v, double w){ listVertexWeight[v] = w; };
+
+    public boolean hasEdge(int u, int v){return true;};
+
+    public void addEdge(int u, int v){};
     
-    double getVertexWeight(int v){
-        return listVertexWeight[v];
-    };
-    double getEdgeWeight(int u, int v){return 1;};
-
-    void setEdgeWeight(int u, int v, double w){}
-    void setVertexWeight(int v, double w){};
-    boolean hasEdge(int u, int v){return true;};
-
-    void addEdge(int u, int v){};
-    void removeEdge(int u, int v){}; 
+    public void removeEdge(int u, int v){}; 
 
 
-
-    boolean isSuccessor(int u, int v){return true;}; 
-    boolean isPredecessor(int u, int v){return true;};
-    boolean isDivergent(int u1, int v1, int u2, int v2){return true;}; 
-    boolean isConvergent(int u1, int v1, int u2, int v2){return true;};
-    boolean isIncident(int u, int v, int x){return true;};
-    boolean isConnected(){return true;};
-    boolean isEmptyGraph(){return true;};
-    boolean isCompleteGraph(){return true;};
+    protected boolean isSuccessor(int u, int v){return true;}; 
+    protected boolean isPredecessor(int u, int v){return true;};
+    protected boolean isDivergent(int u1, int v1, int u2, int v2){return true;}; 
+    protected boolean isConvergent(int u1, int v1, int u2, int v2){return true;};
+    protected boolean isIncident(int u, int v, int x){return true;};
+    protected boolean isConnected(){return true;};
+    protected boolean isEmptyGraph(){return true;};
+    protected boolean isCompleteGraph(){return true;};
 
     void exportToGEPHI(String path){}; 
 
-    
 }
