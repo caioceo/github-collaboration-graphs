@@ -27,43 +27,32 @@ public class AdjacencyMatrixGraph extends AbstractGraph{
   @Override 
   public int getVertexInDegree(int u)throws Exception{
     int temp = 0; 
-    try{
-      hasVertex(u);
-      for(int i = 0; i < this.numVertex; i++){
-        if(i!= u && hasEdge(i, u)){
-          temp++;            
-        }
+    hasVertex(u);
+    for(int i = 0; i < this.numVertex; i++){
+      if(i!= u && hasEdge(i, u)){
+        temp++;            
       }
-       return  temp;
-    }catch(Exception e){
-      throw new Exception(e);
     }
+      return  temp;
   };
   
   @Override
   public int getVertexOutDegree(int u)throws Exception{
     int temp = 0; 
-    try{
-      hasVertex(u);
-      for(int i = 0; i < this.numVertex; i++){
-        if(i!= u && hasEdge(u, i )){
-          temp++;            
-        }
+    hasVertex(u);
+    for(int i = 0; i < this.numVertex; i++){
+      if(i!= u && hasEdge(u, i )){
+        temp++;            
       }
-       return temp;
-    }catch(Exception e){
-      throw new Exception(e);
     }
+    return temp;
+
   };  
 
   @Override 
   public double getVertexWeight(int v)throws Exception{
-    try{
-       hasVertex(v);
-       return super.getVertexWeight(v);
-    }catch(Exception e){
-      throw new Exception(e); 
-    }
+      hasVertex(v);
+      return super.getVertexWeight(v);
   };
 
   @Override 
@@ -113,7 +102,7 @@ public class AdjacencyMatrixGraph extends AbstractGraph{
     if(numVertex > u && u >= 0){
       temp = true;
     }else{
-       throw new Exception(MSG2_EXCEPTION);
+      temp = false;
     }
     return temp;
   };
@@ -157,10 +146,6 @@ public class AdjacencyMatrixGraph extends AbstractGraph{
   
   @Override 
   public boolean isCompleteGraph()throws Exception{return true;};
-
-
-
-
 
 }
 
