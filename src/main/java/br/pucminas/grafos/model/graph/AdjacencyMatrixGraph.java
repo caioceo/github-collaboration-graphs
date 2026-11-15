@@ -1,35 +1,125 @@
 package br.pucminas.grafos.model.graph;
 
-/** Grafo representado por matriz de adjacência (T1.2). */
-public class AdjacencyMatrixGraph extends AbstractGraph {
+import java.util.*; 
 
-    public AdjacencyMatrixGraph(int numVertices) {
-        super(numVertices);
-        // TODO T1.2: criar a matriz (ex.: double[][] ou boolean[][] + double[][] para os pesos)
-    }
+public class AdjacencyMatrixGraph extends AbstractGraph{
 
-    @Override
-    protected boolean containsEdge(int u, int v) {
-        throw new UnsupportedOperationException("TODO T1.2");
-    }
+  public Double [][] adjacencyMatrix; 
 
-    @Override
-    protected void insertEdge(int u, int v, double weight) {
-        throw new UnsupportedOperationException("TODO T1.2");
-    }
+  public AdjacencyMatrixGraph(int numVertex){
+      super(numVertex);
+      this.adjacencyMatrix = new Double[this.numVertex][this.numVertex];
+  }
 
-    @Override
-    protected void deleteEdge(int u, int v) {
-        throw new UnsupportedOperationException("TODO T1.2");
+    
+  public void viewMatrix(){
+    numVertex = getVertexCount();
+    for(int i = 0 ; i < numVertex ; i++ ){
+      System.out.print(" | ");
+        for(int j = 0 ; j < numVertex ; j++){
+          System.out.print(adjacencyMatrix[i][j] + " | ");
+        }
+      System.out.println();
     }
+  }
 
-    @Override
-    protected double readEdgeWeight(int u, int v) {
-        throw new UnsupportedOperationException("TODO T1.2");
+  
+  @Override 
+  public int getVertexInDegree(int u)throws Exception{
+    int temp = 0; 
+    hasVertex(u);
+    for(int i = 0; i < this.numVertex; i++){
+      if(i!= u && hasEdge(i, u)){
+        temp++;            
+      }
     }
+      return  temp;
+  };
+  
+  @Override
+  public int getVertexOutDegree(int u)throws Exception{
+    int temp = 0; 
+    hasVertex(u);
+    for(int i = 0; i < this.numVertex; i++){
+      if(i!= u && hasEdge(u, i )){
+        temp++;            
+      }
+    }
+    return temp;
 
-    @Override
-    protected void writeEdgeWeight(int u, int v, double weight) {
-        throw new UnsupportedOperationException("TODO T1.2");
+  };  
+
+  @Override 
+  public double getVertexWeight(int v)throws Exception{
+      hasVertex(v);
+      return super.getVertexWeight(v);
+  };
+
+  @Override 
+  public double getEdgeWeight(int u, int v) throws Exception{
+    double temp = 0 ; 
+    if(hasEdge(u, v)){
+      temp = adjacencyMatrix[u][v];
+    }else{
+      throw new Exception(MSG1_EXCEPTION);
     }
+    return temp;
+  } 
+  
+  @Override 
+  public void setEdgeWeight(int u, int v, double w) throws Exception {
+    if(hasEdge(u, v)){
+        adjacencyMatrix[u][v] = w; 
+    }else{
+      throw new Exception(MSG1_EXCEPTION);
+    }
+  }
+  
+  @Override 
+  public void addEdge(int u, int v)throws Exception{ 
+    if(hasEdge(u, v)){
+      throw new Exception(MSG3_EXCEPTION);
+    }else{
+      adjacencyMatrix[u][v] = DEFAULT_EDGE_WEIGHT;
+      this.edgeCount ++;
+    } 
+  }
+
+  @Override 
+  public boolean hasEdge(int u, int v)throws Exception{
+    boolean temp = false;
+    if(hasVertex(u) && hasVertex(v)){
+      temp = adjacencyMatrix[u][v] == null ? false : true;
+    }else{
+      throw new Exception(MSG2_EXCEPTION);
+    }
+    return temp;
+  };
+  
+  
+  @Override 
+  public boolean hasVertex(int u) throws Exception{ 
+    boolean temp = false;
+    if(numVertex > u && u >= 0){
+      temp = true;
+    }else{
+      temp = false;
+    }
+    return temp;
+  };
+
+
+  @Override 
+  public void removeEdge(int u, int v) throws Exception{
+    if(hasEdge(u, v)){
+      adjacencyMatrix[u][v] = null;
+      this.edgeCount --;
+    }else{
+      throw new Exception(MSG4_EXCEPTION);
+    }
+    
+  };
+
 }
+
+
