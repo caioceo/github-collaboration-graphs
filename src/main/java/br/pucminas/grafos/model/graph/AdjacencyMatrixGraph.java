@@ -81,6 +81,7 @@ public class AdjacencyMatrixGraph extends AbstractGraph{
       throw new Exception(MSG3_EXCEPTION);
     }else{
       adjacencyMatrix[u][v] = DEFAULT_EDGE_WEIGHT;
+      this.edgeCount ++;
     } 
   }
 
@@ -112,40 +113,12 @@ public class AdjacencyMatrixGraph extends AbstractGraph{
   public void removeEdge(int u, int v) throws Exception{
     if(hasEdge(u, v)){
       adjacencyMatrix[u][v] = null;
+      this.edgeCount --;
     }else{
       throw new Exception(MSG4_EXCEPTION);
     }
     
   };
-
-
-  @Override 
-  public boolean isSuccessor(int u, int v)throws Exception{
-    return hasEdge(u, v);
-  }; 
-  
-  @Override 
-  public boolean isPredecessor(int u, int v)throws Exception{
-    return hasEdge(v, u);
-  };
-  
-  @Override 
-  public boolean isDivergent(int u1, int v1, int u2, int v2)throws Exception{return true;}; 
-  
-  @Override 
-  public boolean isConvergent(int u1, int v1, int u2, int v2)throws Exception{return true;};
-  
-  @Override 
-  public boolean isIncident(int u, int v, int x)throws Exception{return true;};
-  
-  @Override 
-  public boolean isConnected()throws Exception{return true;};
-  
-  @Override 
-  public boolean isEmptyGraph()throws Exception{return true;};
-  
-  @Override 
-  public boolean isCompleteGraph()throws Exception{return true;};
 
 }
 

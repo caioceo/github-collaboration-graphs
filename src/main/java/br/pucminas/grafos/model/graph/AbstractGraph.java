@@ -40,14 +40,14 @@ public abstract class AbstractGraph {
     public void removeEdge(int u, int v) throws Exception {}; 
 
 
-    public boolean isSuccessor(int u, int v)throws Exception{return true;}; 
-    public boolean isPredecessor(int u, int v)throws Exception{return true;};
-    public boolean isDivergent(int u1, int v1, int u2, int v2)throws Exception{return true;}; 
-    public boolean isConvergent(int u1, int v1, int u2, int v2)throws Exception{return true;};
-    public boolean isIncident(int u, int v, int x)throws Exception{return true;};
-    public boolean isConnected()throws Exception{return true;};
-    public boolean isEmptyGraph()throws Exception{return true;};
-    public boolean isCompleteGraph()throws Exception{return true;};
+    public boolean isSuccessor(int u, int v)throws Exception{ return hasEdge(u, v);}; 
+    public boolean isPredecessor(int u, int v)throws Exception{ return hasEdge(v,u);};
+    public boolean isDivergent(int u1, int v1, int u2, int v2)throws Exception{return u1 == u2 && v1 != v2 ;}; 
+    public boolean isConvergent(int u1, int v1, int u2, int v2)throws Exception{return u1 != u2 && v1 == v2 ;};
+    public boolean isIncident(int u, int v, int x)throws Exception{return x==u || x==v;};
+    public boolean isConnected()throws Exception{return this.edgeCount >= this.numVertex-1;};
+    public boolean isEmptyGraph()throws Exception{return this.edgeCount==0 ;};
+    public boolean isCompleteGraph()throws Exception{return  this.edgeCount == this.numVertex*this.numVertex/2; };
 
     void exportToGEPHI(String path)throws Exception{}; 
 
