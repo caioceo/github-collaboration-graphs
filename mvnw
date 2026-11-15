@@ -32,12 +32,10 @@
 set -euf
 [ "${MVNW_VERBOSE-}" != debug ] || set -x
 
-# OS specific support.
-native_path() { printf %s\\n "$1"; }
+# OS specific support: on Windows under Git Bash / MinGW / Cygwin / MSYS, delegate to mvnw.cmd
 case "$(uname)" in
-CYGWIN* | MINGW*)
-  [ -z "${JAVA_HOME-}" ] || JAVA_HOME="$(cygpath --unix "$JAVA_HOME")"
-  native_path() { cygpath --path --windows "$1"; }
+CYGWIN* | MINGW* | MSYS*)
+  exec "$(dirname "$0")/mvnw.cmd" "$@"
   ;;
 esac
 

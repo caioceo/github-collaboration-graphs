@@ -5,11 +5,35 @@ import java.util.ArrayList;
 import java.util.Map;
 
 
-/** Grafo representado por listas de adjacência (T1.3). */
+import java.util.*;
+
+import br.pucminas.grafos.model.graph.AdjacencyListGraph.No.ListNo; 
+
 public class AdjacencyListGraph extends AbstractGraph {
     private List<Map<Integer, Double>> list; // lista de adjacencia com mapa V_adjacente -> Peso para cada vertice da lista
         } 
 
+    public ListNo [] adjacencyList;
+    
+    public AdjacencyListGraph(int numVertex){
+        super(numVertex);
+        this.adjacencyList = new ListNo[numVertex];
+    }
+
+    public class No{
+        public int edgeWeight;
+        public int vertex;
+        public No prox;
+
+        public No(int edgeWeight, int vertex){
+            this.edgeWeight = edgeWeight;
+            this.vertex = vertex;
+            this.prox = null; 
+        }
+    }
+
+    public class  ListNo {
+        public No top;
     public AdjacencyListGraph(int numVertices) {
         super(numVertices);
         list = new ArrayList<>(); // Inicializa a lista de adjacência vazia
@@ -32,13 +56,15 @@ public class AdjacencyListGraph extends AbstractGraph {
         list.get(u).remove(v);
     }
 
-    @Override
-    protected double readEdgeWeight(int u, int v) {
-        throw new UnsupportedOperationException("TODO T1.3");
+        public ListNo(int edgeWeight, int vertex){
+            this.top= new No(edgeWeight, vertex);
+        }
     }
 
-    @Override
-    protected void writeEdgeWeight(int u, int v, double weight) {
-        throw new UnsupportedOperationException("TODO T1.3");
-    }
+    @Override 
+    public int getVertexInDegree(int u)throws Exception{
+        if hasVertex(u)
+    };
+    public int getVertexOutDegree(int u)throws Exception{return 0;};    
+  
 }
