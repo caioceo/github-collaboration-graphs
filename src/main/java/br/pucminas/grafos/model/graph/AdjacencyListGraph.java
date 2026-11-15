@@ -1,10 +1,17 @@
 package br.pucminas.grafos.model.graph;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+
 
 import java.util.*;
 
 import br.pucminas.grafos.model.graph.AdjacencyListGraph.No.ListNo; 
 
 public class AdjacencyListGraph extends AbstractGraph {
+    private List<Map<Integer, Double>> list; // lista de adjacencia com mapa V_adjacente -> Peso para cada vertice da lista
+        } 
 
     public ListNo [] adjacencyList;
     
@@ -27,6 +34,27 @@ public class AdjacencyListGraph extends AbstractGraph {
 
     public class  ListNo {
         public No top;
+    public AdjacencyListGraph(int numVertices) {
+        super(numVertices);
+        list = new ArrayList<>(); // Inicializa a lista de adjacência vazia
+        for (int i = 0; i < numVertices; i++) {
+            list.add(new HashMap<>()); // Inicializa um mapa V_adjacente -> Peso para cada vertice da lista
+        } 
+    }   
+
+    @Override
+    protected boolean containsEdge(int u, int v) {
+        return list.get(u).containsKey(v); 
+    }
+
+    @Override
+    protected void insertEdge(int u, int v, double weight) {
+        list.get(u).put(v, weight);}
+
+    @Override
+    protected void deleteEdge(int u, int v) {
+        list.get(u).remove(v);
+    }
 
         public ListNo(int edgeWeight, int vertex){
             this.top= new No(edgeWeight, vertex);
