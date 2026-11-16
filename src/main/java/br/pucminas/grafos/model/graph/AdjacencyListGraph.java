@@ -1,37 +1,44 @@
 package br.pucminas.grafos.model.graph;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
 
-import java.util.*;
 
+/** Grafo representado por listas de adjacência (T1.3). */
 public class AdjacencyListGraph extends AbstractGraph {
+    private List<Map<Integer, Double>> list; // lista de adjacencia com mapa V_adjacente -> Peso para cada vertice da lista
+        } 
 
-    
-    public ListNo [] adjacencyList;
-    
-    public AdjacencyListGraph(int numVertex) throws Exception{
-        super(numVertex);
-        this.adjacencyList = new ListNo[numVertex];
+    public AdjacencyListGraph(int numVertices) {
+        super(numVertices);
+        list = new ArrayList<>(); // Inicializa a lista de adjacência vazia
+        for (int i = 0; i < numVertices; i++) {
+            list.add(new HashMap<>()); // Inicializa um mapa V_adjacente -> Peso para cada vertice da lista
+        } 
+    }   
+
+    @Override
+    public boolean hasEdge(int u, int v) throws Exception {
+        return list.get(u).containsKey(v); 
     }
 
-    public class No{
-        public int edgeWeight;
-        public int vertex;
-        public No prox;
+    @Override
+    public void addEdge(int u, int v) throws Exception{
+        list.get(u).put(v, null);}
 
-        public No(int edgeWeight, int vertex){
-            this.edgeWeight = edgeWeight;
-            this.vertex = vertex;
-            this.prox = null; 
-        }
+    @Override
+    public void removeEdge(int u, int v) throws Exception{
+        list.get(u).remove(v);
     }
 
-    public class  ListNo {
-        public No top;
-
-        public ListNo(int edgeWeight, int vertex){
-            this.top= new No(edgeWeight, vertex);
-        }
+    @Override
+    public double getVertexWeight(int u, int v)  throws Exception {
+        throw new UnsupportedOperationException("TODO T1.3");
     }
 
-
-
+    @Override
+    public void writeEdgeWeight(int u, int v, double weight)  throws Exception {
+        throw new UnsupportedOperationException("TODO T1.3");
+    }
 }
