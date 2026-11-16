@@ -40,7 +40,14 @@
 @SET __MVNW_ARG0_NAME__=
 @SET MVNW_USERNAME=
 @SET MVNW_PASSWORD=
-@IF NOT "%__MVNW_CMD__%"=="" ("%__MVNW_CMD__%" %*)
+@SET "__MVNW_EXTRA_CLEAN__="
+@IF NOT "%~1"=="" (
+  @SET "__FIRST_CHAR__=%~1"
+  @IF NOT "!__FIRST_CHAR__:~0,1!"=="-" (
+    @ECHO. %* | FINDSTR /I /C:"clean" >NUL || SET "__MVNW_EXTRA_CLEAN__=clean "
+  )
+)
+@IF NOT "%__MVNW_CMD__%"=="" ("%__MVNW_CMD__%" %__MVNW_EXTRA_CLEAN__%%*)
 @echo Cannot start maven from wrapper >&2 && exit /b 1
 @GOTO :EOF
 : end batch / begin powershell #>

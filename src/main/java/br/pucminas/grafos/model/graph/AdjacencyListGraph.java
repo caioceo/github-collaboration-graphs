@@ -7,15 +7,14 @@ import java.util.Map;
 
 import java.util.*;
 
-import br.pucminas.grafos.model.graph.AdjacencyListGraph.No.ListNo; 
-
 public class AdjacencyListGraph extends AbstractGraph {
     private List<Map<Integer, Double>> list; // lista de adjacencia com mapa V_adjacente -> Peso para cada vertice da lista
         } 
 
+    
     public ListNo [] adjacencyList;
     
-    public AdjacencyListGraph(int numVertex){
+    public AdjacencyListGraph(int numVertex) throws Exception{
         super(numVertex);
         this.adjacencyList = new ListNo[numVertex];
     }
@@ -61,10 +60,6 @@ public class AdjacencyListGraph extends AbstractGraph {
         }
     }
 
-    @Override 
-    public int getVertexInDegree(int u)throws Exception{
-        if hasVertex(u)
-    };
-    public int getVertexOutDegree(int u)throws Exception{return 0;};    
-  
+
+
 }
