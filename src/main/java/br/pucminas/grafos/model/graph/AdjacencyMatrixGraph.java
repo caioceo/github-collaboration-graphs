@@ -6,7 +6,7 @@ public class AdjacencyMatrixGraph extends AbstractGraph{
 
   public Double [][] adjacencyMatrix; 
 
-  public AdjacencyMatrixGraph(int numVertex){
+  public AdjacencyMatrixGraph(int numVertex)throws Exception{
       super(numVertex);
       this.adjacencyMatrix = new Double[this.numVertex][this.numVertex];
   }
@@ -27,32 +27,40 @@ public class AdjacencyMatrixGraph extends AbstractGraph{
   @Override 
   public int getVertexInDegree(int u)throws Exception{
     int temp = 0; 
-    hasVertex(u);
-    for(int i = 0; i < this.numVertex; i++){
-      if(i!= u && hasEdge(i, u)){
-        temp++;            
+    if(hasVertex(u)){
+      for(int i = 0; i < this.numVertex; i++){
+        if(i!= u && hasEdge(i, u)){
+          temp++;            
+        }
       }
-    }
       return  temp;
+    }else{
+       throw new Exception(MSG2_EXCEPTION);
+    }
   };
   
   @Override
   public int getVertexOutDegree(int u)throws Exception{
     int temp = 0; 
-    hasVertex(u);
-    for(int i = 0; i < this.numVertex; i++){
-      if(i!= u && hasEdge(u, i )){
-        temp++;            
+    if(hasVertex(u)){
+      for(int i = 0; i < this.numVertex; i++){
+        if(i!= u && hasEdge(u, i )){
+          temp++;            
+        }
       }
+      return temp;
+    }else{
+        throw new Exception(MSG2_EXCEPTION);
     }
-    return temp;
-
   };  
 
   @Override 
   public double getVertexWeight(int v)throws Exception{
-      hasVertex(v);
-      return super.getVertexWeight(v);
+      if(hasVertex(v)){
+        return super.getVertexWeight(v);
+      }else{
+        throw new Exception(MSG2_EXCEPTION);
+      }
   };
 
   @Override 
@@ -77,6 +85,12 @@ public class AdjacencyMatrixGraph extends AbstractGraph{
   
   @Override 
   public void addEdge(int u, int v)throws Exception{ 
+    if(!hasVertex(u) || !hasVertex(v)){
+      throw new Exception(MSG2_EXCEPTION);
+    }
+    if(u == v){
+      throw new Exception(MSG6_EXCEPTION);
+    }
     if(hasEdge(u, v)){
       throw new Exception(MSG3_EXCEPTION);
     }else{

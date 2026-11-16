@@ -9,6 +9,8 @@ public abstract class AbstractGraph {
     public static final String MSG2_EXCEPTION = "The vertex you are trying to access does not exist.";
     public static final String MSG3_EXCEPTION = "This edge has already been created.";
     public static final String MSG4_EXCEPTION = "There is no such edge.";
+    public static final String MSG5_EXCEPTION = "It is not possible to create a graph with fewer than one vertex.";
+    public static final String MSG6_EXCEPTION = "Self-loops are not allowed.";
 
     public static final double DEFAULT_VERTEX_WEIGHT = 0.0;
     public static final double DEFAULT_EDGE_WEIGHT = 1.0;
@@ -17,8 +19,14 @@ public abstract class AbstractGraph {
     protected int edgeCount; 
     protected double [] listVertexWeight; 
 
-    public AbstractGraph(int numVertex){
-        this.numVertex = numVertex;
+    public AbstractGraph(int numVertex)throws Exception{
+        if(numVertex > 0 ){
+            this.numVertex = numVertex;
+            this.listVertexWeight = new double[numVertex];
+            Arrays.fill(this.listVertexWeight, DEFAULT_VERTEX_WEIGHT);
+        }else{
+            throw new Exception(MSG5_EXCEPTION);
+        }  
     }
 
 
@@ -26,14 +34,26 @@ public abstract class AbstractGraph {
     public int getEdgeCount(){return edgeCount;};
     public int getVertexInDegree(int u)throws Exception{return 0;};
     public int getVertexOutDegree(int u)throws Exception{return 0;};    
-    public double getVertexWeight(int v)throws Exception{return listVertexWeight[v];};
+    public double getVertexWeight(int v)throws Exception{
+        if(!hasVertex(v)){
+            throw new Exception(MSG2_EXCEPTION);
+        }
+        return listVertexWeight[v];
+    };
     public double getEdgeWeight(int u, int v)throws Exception {return 1;};
 
     public void setEdgeWeight(int u, int v, double w) throws Exception {}
-    public void setVertexWeight(int v, double w)throws Exception{ listVertexWeight[v] = w; };
+    public void setVertexWeight(int v, double w)throws Exception{
+        if(!hasVertex(v)){
+            throw new Exception(MSG2_EXCEPTION);
+        }
+        listVertexWeight[v] = w;
+    };
 
     public boolean hasEdge(int u, int v)throws Exception{return true;};
-    public boolean hasVertex(int u)throws Exception{return true;};
+    public boolean hasVertex(int u)throws Exception{
+        return u >= 0 && u < numVertex;
+    };
 
     public void addEdge(int u, int v)throws Exception{};
     

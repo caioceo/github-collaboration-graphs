@@ -32,10 +32,18 @@
 set -euf
 [ "${MVNW_VERBOSE-}" != debug ] || set -x
 
-# OS specific support: on Windows under Git Bash / MinGW / Cygwin / MSYS, delegate to mvnw.cmd
+# OS specific support: on Windows under Git Bash / MinGW / Cygwin / MSYS, delegate to mvnw.cmd with auto-clean
 case "$(uname)" in
 CYGWIN* | MINGW* | MSYS*)
-  exec "$(dirname "$0")/mvnw.cmd" "$@"
+  case "${1-}" in
+    -*|"") exec "$(dirname "$0")/mvnw.cmd" "$@" ;;
+    *)
+      case " $* " in
+        *" clean "*) exec "$(dirname "$0")/mvnw.cmd" "$@" ;;
+        *) exec "$(dirname "$0")/mvnw.cmd" clean "$@" ;;
+      esac
+      ;;
+  esac
   ;;
 esac
 
