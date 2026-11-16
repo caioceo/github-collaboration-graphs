@@ -14,15 +14,38 @@ O trabalho é uma ferramenta orientada a objetos dividida em duas etapas integra
 
 ## Como executar
 
-Pré-requisito: JDK 21. O Maven não precisa estar instalado, o projeto usa o Maven Wrapper.
+Pré-requisito: JDK 21. O Maven não precisa estar instalado, o projeto utiliza o Maven Wrapper (`mvnw` / `mvnw.cmd`).
 
+Execute os comandos a partir da raiz do repositório:
+
+### No Linux, macOS ou Git Bash (Windows)
 ```bash
-# compilar e rodar os testes
-./mvnw test            # Linux/macOS
-mvnw.cmd test          # Windows
+# Compilar o projeto (o wrapper já realiza clean automático)
+./mvnw compile
 
-# executar a aplicação principal
+# Executar a suíte de testes unitários (JUnit 5)
+./mvnw test
+
+# Executar a classe principal via Maven
 ./mvnw compile exec:java
+
+# Ou executar diretamente pelo Java após compilar
+java -cp target/classes br.pucminas.grafos.Main
+```
+
+### No Windows (PowerShell ou CMD)
+```bat
+REM Compilar o projeto
+.\mvnw.cmd compile
+
+REM Executar os testes unitários
+.\mvnw.cmd test
+
+REM Executar a classe principal via Maven
+.\mvnw.cmd compile exec:java
+
+REM Ou executar diretamente pelo Java após compilar
+java -cp target/classes br.pucminas.grafos.Main
 ```
 
 Para a coleta (Etapa 2), copie `.env.example` para `.env` e preencha `GITHUB_TOKEN`. O `.env` está no `.gitignore` e nunca deve ser commitado.
